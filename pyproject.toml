@@ -1,0 +1,18 @@
+[project]
+name = "deriv-cyber-bot"
+version = "3.0.0"
+description = "Deriv Cyber Neon Algorithmic Trading Bot"
+requires-python = ">=3.11"
+dependencies = [
+    "flet==0.25.2",
+    "websockets==13.1",
+    "aiohttp==3.10.10",
+]
+
+[tool.flet]
+org = "com.cyberbot.deriv"
+product = "Deriv Cyber Bot"
+company = "Ai Hassan Studio"
+
+[tool.flet.android]
+permissions = ["android.permission.INTERNET"]
