@@ -34,10 +34,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install flet==0.25.2
-          
-   - name: 6. Build Android APK
-     run: |
-       flet build apk --project deriv_cyber_bot --org com.cyberbot.deriv
+
+      - name: 6. Build Android APK
+        run: |
+          flet build apk --project deriv_cyber_bot --product "Deriv Cyber Bot" --org com.cyberbot.deriv
 
       - name: 7. Upload APK Artifact
         uses: actions/upload-artifact@v4
