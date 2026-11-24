@@ -1,0 +1,47 @@
+name: Build Deriv Cyber Bot APK
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 1. Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 2. Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: 3. Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "17"
+
+      - name: 4. Set up Flutter Stable
+        uses: subosito/flutter-action@v2
+        with:
+          channel: "stable"
+          cache: true
+
+      - name: 5. Install Flet CLI
+        run: |
+          python -m pip install --upgrade pip
+          pip install flet==0.25.2
+
+      - name: 6. Build Android APK
+        run: |
+          flet build apk --project "Deriv Cyber Bot" --org "com.cyberbot.deriv" --yes
+
+      - name: 7. Upload APK Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Deriv-Cyber-Bot-APK
+          path: build/apk/app-release.apk
+          if-no-files-found: error
